@@ -2,4 +2,6 @@
 # ProCalc2
 Smart and Powerful
 
-##Hola
+#What is ProCalc?
+
+ProCal is the smart way to resolve and graph triple integrals. 
