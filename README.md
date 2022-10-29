@@ -4,4 +4,6 @@ Smart and Powerful
 
 # What is ProCalc?
 
-ProCal is the best way to resolve and graph triple integrals. Because is using a powerful Python script. It also uses Java as the main graphical interface for interaction with the script. It also contains a code editor for the graphic script.
+ProCalc is the best way to resolve and graph triple integrals.
+Because is using a powerful Python script. It also uses Java as the main graphical interface for interaction with the script.
+It also contains a code editor for the graphic script.
