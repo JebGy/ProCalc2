@@ -7,6 +7,9 @@ package view;
 import classes.CodeProces;
 import classes.DataManager;
 import java.awt.Color;
+import java.awt.HeadlessException;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -60,7 +63,7 @@ public class CodeEditing extends javax.swing.JPanel {
         final AttributeSet attyellow = cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(244, 179, 26));
         final AttributeSet attblue = cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(21, 133, 130));
         final AttributeSet attgreen = cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(110, 208, 125));
-        final AttributeSet attwhite = cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(204, 209, 217));
+        final AttributeSet attwhite = cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(168, 217, 199));
 
         //STYLO 
         DefaultStyledDocument doc = new DefaultStyledDocument() {
@@ -129,6 +132,8 @@ public class CodeEditing extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextPane();
+        btnInstallDeps = new componentes.ButtonPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(44, 44, 44));
         setPreferredSize(new java.awt.Dimension(779, 397));
@@ -171,6 +176,40 @@ public class CodeEditing extends javax.swing.JPanel {
         txt_area.setCaretColor(new java.awt.Color(255, 102, 102));
         jScrollPane2.setViewportView(txt_area);
 
+        btnInstallDeps.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInstallDepsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnInstallDepsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnInstallDepsMouseExited(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Lato Light", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Install Deps");
+
+        javax.swing.GroupLayout btnInstallDepsLayout = new javax.swing.GroupLayout(btnInstallDeps);
+        btnInstallDeps.setLayout(btnInstallDepsLayout);
+        btnInstallDepsLayout.setHorizontalGroup(
+            btnInstallDepsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnInstallDepsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnInstallDepsLayout.setVerticalGroup(
+            btnInstallDepsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnInstallDepsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,29 +217,31 @@ public class CodeEditing extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
+                        .addGap(261, 261, 261)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInstallDeps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel10)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        .addComponent(btnInstallDeps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(buttonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(127, 127, 127))))
+                        .addGap(127, 127, 127))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -221,11 +262,37 @@ public class CodeEditing extends javax.swing.JPanel {
         cp.codeWriter(txt_area.getText());
     }//GEN-LAST:event_buttonPanel1MouseClicked
 
+    private void btnInstallDepsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstallDepsMouseEntered
+        btnInstallDeps.setCr(109);
+        btnInstallDeps.setCrg(208);
+        btnInstallDeps.setCrgb(124);
+    }//GEN-LAST:event_btnInstallDepsMouseEntered
+
+    private void btnInstallDepsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstallDepsMouseExited
+        btnInstallDeps.setCr(44);
+        btnInstallDeps.setCrg(44);
+        btnInstallDeps.setCrgb(44);
+    }//GEN-LAST:event_btnInstallDepsMouseExited
+
+    private void btnInstallDepsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstallDepsMouseClicked
+        try {
+            String comand="pip install matplotlib";
+            String comand2="pip install sympy";
+            Runtime.getRuntime().exec(comand);
+            Runtime.getRuntime().exec(comand2);
+            JOptionPane.showMessageDialog(null, "Please wait . . .");
+        } catch (HeadlessException | IOException e) {
+            JOptionPane.showMessageDialog(null, "Error: - "+e.toString());
+        }
+    }//GEN-LAST:event_btnInstallDepsMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private componentes.ButtonPanel btnInstallDeps;
     private componentes.ButtonPanel buttonPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane txt_area;
     // End of variables declaration//GEN-END:variables

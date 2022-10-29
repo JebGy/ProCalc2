@@ -4,10 +4,13 @@
  */
 package classes;
 
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,33 +50,37 @@ public class DataManager {
     public void writeData(String fomula, String intervalos) {
         File f = new File("vars.txt");
         try {
-            FileWriter fr = new FileWriter(f);
-            fr.append("<Intervalos\n" + this.interval);
-            fr.append("\n<Formula\n" + "!" + this.formula);
-            fr.close();
-        } catch (Exception e) {
+            try ( FileWriter fr = new FileWriter(f)) {
+                fr.append("<Intervalos\n" + this.interval);
+                fr.append("\n<Formula\n" + "!" + this.formula);
+            }
+        } catch (IOException e) {
             System.out.println("Error: " + e.toString());
         }
     }
-    
-    public String readData(){
+
+    public String readData() {
         try {
             File f = new File("result.txt");
-            BufferedReader br= new BufferedReader(new FileReader(f));
-            String line= br.readLine();
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String line = br.readLine();
             return line;
-            
-        } catch (Exception e) {
-            System.out.println("Error: -"+e.toString());
+
+        } catch (IOException e) {
+            System.out.println("Error: -" + e.toString());
             return null;
         }
     }
-    
+
     public void runners() {
-        Runtime rt = Runtime.getRuntime();
+
         try {
-            rt.exec("SolverPyKernel");
-        } catch (Exception e) {
+            String comand = "py SolverPyKernel.py";
+            Runtime.getRuntime().exec(comand);
+            JOptionPane.showMessageDialog(null, "Please wait a second :3");
+        } catch (HeadlessException | IOException e) {
+            JOptionPane.showMessageDialog(null, "Error: - " + e.toString());
         }
+
     }
 }

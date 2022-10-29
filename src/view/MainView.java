@@ -5,6 +5,7 @@
 package view;
 
 import classes.DataManager;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -260,9 +261,14 @@ public class MainView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_SolveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SolveMouseClicked
-        DataManager dm= new DataManager();
-        dm.runners();
-        jTextArea1.setText(dm.readData());
+        try {
+            DataManager dm = new DataManager();
+            dm.runners();
+            Thread.sleep(2000);
+            jTextArea1.setText(dm.readData());
+        } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(null, "Error al resolver");
+        }
     }//GEN-LAST:event_btn_SolveMouseClicked
 
     private void btn_SolveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SolveMouseEntered
@@ -290,11 +296,30 @@ public class MainView extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_SaveMouseExited
 
     private void btn_SaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SaveMouseClicked
-        DataManager dm= new DataManager();
-        dm.setFormula(txt_fun.getText());
-        dm.setInterval(inputs1.getText()+","+inputs2.getText()+","+inputs3.getText());
-        lbl_Fun.setText("∫∫∫"+txt_fun.getText());
-        dm.writeData(dm.getFormula(), dm.getInterval());
+        DataManager dm = new DataManager();
+        
+        if ("".equals(inputs2.getText()) && "".equals(inputs3.getText())) {
+            dm.setFormula(txt_fun.getText());
+            dm.setInterval(inputs1.getText());
+            lbl_Fun.setText("∫" + txt_fun.getText());
+            dm.writeData(dm.getFormula(), dm.getInterval());
+            JOptionPane.showMessageDialog(null, "Saved");
+            
+        } else if ("".equals(inputs2.getText())) {
+            dm.setFormula(txt_fun.getText());
+            dm.setInterval(inputs1.getText() + "," + inputs3.getText());
+            lbl_Fun.setText("∫∫"+txt_fun.getText());
+            dm.writeData(dm.getFormula(), dm.getInterval());
+            JOptionPane.showMessageDialog(null, "Saved");
+            
+        } else {
+            dm.setFormula(txt_fun.getText());
+            dm.setInterval(inputs1.getText() + "," + inputs2.getText() + "," + inputs3.getText());
+            lbl_Fun.setText("∫∫∫" + txt_fun.getText());
+            dm.writeData(dm.getFormula(), dm.getInterval());
+            JOptionPane.showMessageDialog(null, "Saved");
+        }
+
     }//GEN-LAST:event_btn_SaveMouseClicked
 
 

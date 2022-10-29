@@ -1,0 +1,4 @@
+<Intervalos
+0,2
+<Formula
+!x+2**x
