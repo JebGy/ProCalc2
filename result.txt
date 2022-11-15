@@ -1,1 +1,1 @@
-Result of this operation is: 2 + 3/log(2)
+Result of this operation is: 61

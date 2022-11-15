@@ -22,7 +22,7 @@ x= np.linspace(int(valuesGraph[2]),int(valuesGraph[3]),int(valuesGraph[4]))
 
 #Please only modify the Return
 def f(x,y):
-    return ((x**5)+y**2)
+    return ((x**2)+y**2)
 
 x,y= np.meshgrid(x,y)
 h = f(x , y)

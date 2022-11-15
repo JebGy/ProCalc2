@@ -1,2 +1,2 @@
--2,1,-1,2,32
-<Spectral
+-1,2,0,2,400
+<twilight_shifted_r
