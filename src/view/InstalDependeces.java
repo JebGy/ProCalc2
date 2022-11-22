@@ -27,6 +27,7 @@ public class InstalDependeces extends javax.swing.JFrame {
         initComponents();
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
+        
     }
 
     /**

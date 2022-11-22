@@ -1,2 +1,2 @@
--1,2,0,2,400
-<twilight_shifted_r
+0,1,0,1,50
+<Wistia
