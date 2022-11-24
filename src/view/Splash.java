@@ -5,6 +5,7 @@
 package view;
 
 import classes.ConfigReader;
+import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -25,6 +26,7 @@ public class Splash extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         splashControl(images);
+        this.setBackground(new Color(0,0,0,0));
         checkState();
         setIconImage(new ImageIcon(getClass().getResource("/images/2.png")).getImage());
     }
